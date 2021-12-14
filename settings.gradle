@@ -7,7 +7,7 @@ pluginManagement {
 }
 
 rootProject.name = 'no-log4shell'
-include ':plugin'
+include ':no-log4shell'
 
 dependencyResolutionManagement {
   // Something in the IDE is injecting a repo during sync!
