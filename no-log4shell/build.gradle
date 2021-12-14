@@ -14,7 +14,7 @@ gradlePlugin {
       id = 'com.autonomousapps.no-log4shell'
       implementationClass = 'com.autonomousapps.NoLog4shellPlugin'
       displayName = 'No log4shell'
-      description = 'Prevent vulnerable version of log4j from being resolved in your project'
+      description = 'Prevent vulnerable versions of log4j from being resolved in your project'
     }
   }
 }
@@ -31,7 +31,6 @@ dependencies {
     exclude group: 'org.codehaus.groovy'
     because 'For Spock tests'
   }
-  testImplementation 'com.google.truth:truth:1.1.3'
 }
 
 tasks.named('test') {
