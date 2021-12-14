@@ -1,0 +1,28 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
+pluginManagement {
+  plugins {
+    id 'com.gradle.plugin-publish' version '0.16.0'
+  }
+}
+
+rootProject.name = 'no-log4shell'
+include ':plugin'
+
+dependencyResolutionManagement {
+  // Something in the IDE is injecting a repo during sync!
+  if (!isIdea()) {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  }
+
+  repositories {
+    mavenCentral()
+  }
+}
+
+def isIdea() {
+  providers.systemProperty('idea.sync.active')
+    .forUseAtConfigurationTime()
+    .getOrElse('false')
+    .toBoolean()
+}

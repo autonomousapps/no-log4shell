@@ -1,0 +1,39 @@
+plugins {
+  id 'java-gradle-plugin'
+  id 'maven-publish'
+  id 'com.gradle.plugin-publish'
+  id 'groovy'
+}
+
+group = 'com.autonomousapps'
+version = '0.1'
+
+gradlePlugin {
+  plugins {
+    log4shell {
+      id = 'com.autonomousapps.no-log4shell'
+      implementationClass = 'com.autonomousapps.NoLog4shellPlugin'
+      displayName = 'No log4shell'
+      description = 'Prevent vulnerable version of log4j from being resolved in your project'
+    }
+  }
+}
+
+pluginBundle {
+  website = 'https://github.com/autonomousapps/no-log4shell'
+  vcsUrl = 'git@github.com:autonomousapps/no-log4shell.git'
+  tags = ['gradle', 'log4shell']
+}
+
+dependencies {
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+  testImplementation('org.spockframework:spock-core:2.0-groovy-3.0') {
+    exclude group: 'org.codehaus.groovy'
+    because 'For Spock tests'
+  }
+  testImplementation 'com.google.truth:truth:1.1.3'
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
+}
