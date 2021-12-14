@@ -11,9 +11,13 @@ plugins {
 Legacy apply:
 ```
 buildscript {
+  repositories {
+    maven { url "https://plugins.gradle.org/m2/" }
+  }
   dependencies {
-    classpath 'com.autonomousapps.no-log4shell.gradle.plugin:<<latest version>>'
+    classpath "com.autonomousapps:no-log4shell:0.1"
   }
 }
-apply plugin: 'com.autonomousapps.no-log4shell'
+
+apply plugin: "com.autonomousapps.no-log4shell"
 ```
