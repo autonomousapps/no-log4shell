@@ -21,7 +21,7 @@ gradlePlugin {
 
 pluginBundle {
   website = 'https://github.com/autonomousapps/no-log4shell'
-  vcsUrl = 'git@github.com:autonomousapps/no-log4shell.git'
+  vcsUrl = 'https://github.com/autonomousapps/no-log4shell'
   tags = ['gradle', 'log4shell']
 }
 
