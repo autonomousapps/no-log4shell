@@ -42,10 +42,9 @@ class NoLog4shellPluginSpec extends Specification {
       .build()
 
     then: 'The constraint is applied transitively'
-    result.output.contains('org.apache.logging.log4j:log4j-core:2.14.1 -> 2.15.0')
-    result.output.contains('org.apache.logging.log4j:log4j-api:2.15.0')
-    result.output.contains(
-      'org.apache.logging.log4j:log4j-core:{strictly [2.15, 3[; prefer 2.15.0} -> 2.15.0 (c)')
+    result.output.contains('org.apache.logging.log4j:log4j-core:2.14.1 -> 2.16.0')
+    result.output.contains('org.apache.logging.log4j:log4j-api:2.16.0')
+    result.output.contains('org.apache.logging.log4j:log4j-core:{strictly [2.16, 3[; prefer 2.16.0} -> 2.16.0 (c)')
   }
 
   def "builds that don't apply this plugin are vulnerable to this rce exploit"() {
