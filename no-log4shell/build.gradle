@@ -1,3 +1,5 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GrUnresolvedAccess
 plugins {
   id 'java-gradle-plugin'
   id 'maven-publish'
@@ -6,13 +8,19 @@ plugins {
 }
 
 group = 'com.autonomousapps'
-version = '0.2'
+version = '0.3'
 
 gradlePlugin {
   plugins {
     log4shell {
       id = 'com.autonomousapps.no-log4shell'
-      implementationClass = 'com.autonomousapps.NoLog4shellPlugin'
+      implementationClass = 'com.autonomousapps.NoLog4ShellPlugin'
+      displayName = 'No log4shell'
+      description = 'Prevent vulnerable versions of log4j from being resolved in your project'
+    }
+    log4shellSettings {
+      id = 'com.autonomousapps.no-log4shell-settings'
+      implementationClass = 'com.autonomousapps.NoLog4ShellSettingsPlugin'
       displayName = 'No log4shell'
       description = 'Prevent vulnerable versions of log4j from being resolved in your project'
     }
@@ -26,6 +34,16 @@ pluginBundle {
 }
 
 dependencies {
+  constraints {
+    api('org.apache.logging.log4j:log4j-core') {
+      version {
+        strictly('[2.16, 3[')
+        prefer('2.16.0')
+      }
+      because('CVE-2021-44228: Log4j vulnerable to remote code execution')
+    }
+  }
+
   testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
   testImplementation('org.spockframework:spock-core:2.0-groovy-3.0') {
     exclude group: 'org.codehaus.groovy'
